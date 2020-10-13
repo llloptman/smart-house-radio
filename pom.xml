@@ -9,9 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.sourse>11</maven.compiler.sourse>
+        <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourseEncoding>UTF-8</project.build.sourseEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.6.2</junit.version>
     </properties>
 
@@ -44,12 +44,6 @@
                         <goal>report</goal>
                     </goals>
                 </execution>
-                <execution>
-                    <id>check</id>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                </execution>
             </executions>
         </plugin>
         </plugins>
@@ -61,6 +55,11 @@
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.6.3</version>
         </dependency>
     </dependencies>
 
