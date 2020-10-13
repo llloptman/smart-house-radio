@@ -62,21 +62,21 @@ public class Conditioner {
         this.on = on;
     }
 
-    public void increaseCurrentTemperature(){
-        if (currentTemperature >= maxTemperature){
+    public void increaseCurrentTemperature() {
+        if (currentTemperature >= maxTemperature) {
             return;
         }
-         if (currentTemperature < minTemperature){
+        if (currentTemperature < minTemperature) {
             return;
         }
-         currentTemperature += 1;
+        currentTemperature += 1;
     }
 
-    public void decreaseCurrentTemperature(){
+    public void decreaseCurrentTemperature() {
 //        if (currentTemperature > maxTemperature){ //Исходя из сетеров curentTemperature не может быть > maxTemperature
 //            return;                               //закоментировано, чтоб добиться 100% покрытия по branch
 //        }
-        if (currentTemperature <= minTemperature){
+        if (currentTemperature <= minTemperature) {
             return;
         }
         this.currentTemperature -= 1;

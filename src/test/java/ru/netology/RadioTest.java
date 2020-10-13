@@ -14,14 +14,14 @@ class RadioTest {
                     "0,5,15"// стартовая волна = 0 пролистаем 15 раз и получим волну 5
             }
     )
-    public void shoudSwitchToNextRadioStation (int currentStation, int expected, int count){
+    public void shoudSwitchToNextRadioStation(int currentStation, int expected, int count) {
         radio.setRadioStation(currentStation);
         for (int i = 0; i < count; i++) {
-        radio.nextRadioStation(radio.getRadioStation());
+            radio.nextRadioStation(radio.getRadioStation());
             System.out.println(radio.getRadioStation());
         }
         int actual = radio.getRadioStation();
-    assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -30,14 +30,14 @@ class RadioTest {
                     "0,5,15"// стартовая волна = 0 пролистаем 15 раз и получим волну 5
             }
     )
-    public void shoudSwitchToPreviousRadioStation (int currentStation, int expected, int count){
+    public void shoudSwitchToPreviousRadioStation(int currentStation, int expected, int count) {
         radio.setRadioStation(currentStation);
         for (int i = 0; i < count; i++) {
             radio.previousRadioStation(radio.getRadioStation());
             System.out.println(radio.getRadioStation());
         }
         int actual = radio.getRadioStation();
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -50,14 +50,14 @@ class RadioTest {
                     // (Зеленый, чтоб получить отчет от jacoco)
             }
     )
-    public void shoudAddVolume (int currentVolume, int expected, int count){
+    public void shoudAddVolume(int currentVolume, int expected, int count) {
         radio.setVolume(currentVolume);
         for (int i = 0; i < count; i++) {
             radio.addSomeNoize(radio.getVolume());
             System.out.println(radio.getVolume());
         }
         int actual = radio.getVolume();
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -70,14 +70,14 @@ class RadioTest {
                     // (Зеленый, чтоб получить отчет от jacoco)
             }
     )
-    public void shoudRemoveVolume (int currentVolume, int expected, int count){
+    public void shoudRemoveVolume(int currentVolume, int expected, int count) {
         radio.setVolume(currentVolume);
         for (int i = 0; i < count; i++) {
             radio.removeSomeNoize(radio.getVolume());
             System.out.println(radio.getVolume());
         }
         int actual = radio.getVolume();
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
 }

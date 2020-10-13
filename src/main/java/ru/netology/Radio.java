@@ -1,7 +1,7 @@
 package ru.netology;
 
 public class Radio {
-    private  int radioStation;
+    private int radioStation;
     private int volume;
 
     public int getVolume() {
@@ -9,10 +9,10 @@ public class Radio {
     }
 
     public void setVolume(int volume) {
-        if (volume<0){
+        if (volume < 0) {
             return;
         }
-        if (volume>10){
+        if (volume > 10) {
             return;
         }
         this.volume = volume;
@@ -23,41 +23,41 @@ public class Radio {
     }
 
     public void setRadioStation(int radioStation) {
-        if (radioStation<0){
+        if (radioStation < 0) {
             return;
         }
-        if (radioStation>9){
+        if (radioStation > 9) {
             return;
         }
         this.radioStation = radioStation;
     }
 
-    public void nextRadioStation (int radioStation){
-        if (radioStation == 9){
+    public void nextRadioStation(int radioStation) {
+        if (radioStation == 9) {
             this.radioStation = 0;
         }
         this.setRadioStation(radioStation + 1);
     }
 
-    public void previousRadioStation (int radioStation){
-        if (radioStation == 0){
+    public void previousRadioStation(int radioStation) {
+        if (radioStation == 0) {
             this.radioStation = 9;
         }
         this.setRadioStation(radioStation - 1);
     }
 
-    public void addSomeNoize (int currentVolume){
-        if (currentVolume == 10){
+    public void addSomeNoize(int currentVolume) {
+        if (currentVolume == 10) {
             this.setVolume(currentVolume);
-        }else {
+        } else {
             this.setVolume(currentVolume + 1);
         }
     }
 
-    public void removeSomeNoize (int currentVolume){
-        if (currentVolume == 0){
+    public void removeSomeNoize(int currentVolume) {
+        if (currentVolume == 0) {
             this.setVolume(currentVolume);
-        }else {
+        } else {
             this.setVolume(currentVolume - 1);
         }
     }
