@@ -42,6 +42,7 @@ class RadioTest {
          check next under min radio station
          */
         Radio radio3 = new Radio(-2,200,1,1);
+        radio3.setMaxRadioStation(0 -2);
         radio3.nextRadioStation(radio3.getRadioStation());
         actual = radio3.getRadioStation();
         expected = -2;
@@ -51,10 +52,10 @@ class RadioTest {
          check next over max radio station
          */
         Radio radio2 = new Radio(12,11,1,1);
-        radio2.setRadioStation(radio2.getMaxRadioStation() + 1);
+        radio2.setMaxRadioStation(radio2.getMaxRadioStation() + 1);
         radio2.nextRadioStation(radio2.getRadioStation());
         actual = radio2.getRadioStation();
-        expected = 12;
+        expected = 0;
         assertEquals(expected, actual);
     }
 
@@ -220,6 +221,7 @@ class RadioTest {
         check volume at max
 
          */
+       radio.setMaxVolume(100);
        radio.setVolume(radio.getMaxVolume());
        expected = radio.getMaxVolume() - 1;
        radio.removeSomeNoize(radio.getVolume());
@@ -235,6 +237,17 @@ class RadioTest {
        radio.removeSomeNoize(radio.getVolume());
        actual = radio.getVolume();
        assertEquals(expected, actual);
+
+       /*
+       check maxVolume under minVolume
+        */
+       Radio radio1 = new Radio();
+       radio1.setMaxVolume(-2);
+       expected = 0;
+       radio1.removeSomeNoize(radio1.getVolume());
+       actual = radio1.getVolume();
+       assertEquals(expected,actual);
+
     }
 
 }
