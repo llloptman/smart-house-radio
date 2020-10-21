@@ -10,104 +10,100 @@ class RadioTest {
 
     @Test
     public void shoudSwitchToNextRadioStation() {
-        Radio radio = new Radio(7); //set max radio station
+        //Radio radio = new Radio(7); //set max radio station
         /*
          check next at max radio station
          */
-        radio.setRadioStation(radio.getMaxRadioStation());
-        radio.nextRadioStation(radio.getRadioStation());
-        int actual = radio.getRadioStation();
+        Radio radioMax = new Radio(5, 5, 1,1);
+        radioMax.nextRadioStation(radioMax.getRadioStation());
+        int actual = radioMax.getRadioStation();
         int expected = 0;
         assertEquals(expected, actual);
 
         /*
          check next in the middle radio station
          */
-        radio.setRadioStation(3);
-        radio.nextRadioStation(radio.getRadioStation());
-        actual = radio.getRadioStation();
+        Radio radioMiddle = new Radio(3,12,1,1);
+        radioMiddle.nextRadioStation(radioMiddle.getRadioStation());
+        actual = radioMiddle.getRadioStation();
         expected = 4;
         assertEquals(expected, actual);
 
         /*
          check next at min radio station
          */
-        radio.setRadioStation(0);
-        radio.nextRadioStation(radio.getRadioStation());
-        actual = radio.getRadioStation();
+        Radio radioMin = new Radio(0,4,1,1);
+        radioMin.nextRadioStation(radioMin.getRadioStation());
+        actual = radioMin.getRadioStation();
         expected = 1;
         assertEquals(expected, actual);
 
         /*
          check next under min radio station
-         Работает не корректно из-за возврата 0 в сетерах
          */
-        radio.setRadioStation(-2);
-        radio.nextRadioStation(radio.getRadioStation());
-        actual = radio.getRadioStation();
-        expected = 1;
+        Radio radio3 = new Radio(-2,200,1,1);
+        radio3.nextRadioStation(radio3.getRadioStation());
+        actual = radio3.getRadioStation();
+        expected = -2;
         assertEquals(expected, actual);
 
         /*
          check next over max radio station
-         Работает не корректно из-за возврата 0 в сетерах
          */
-        radio.setRadioStation(radio.getMaxRadioStation() + 1);
-        radio.nextRadioStation(radio.getRadioStation());
-        actual = radio.getRadioStation();
-        expected = 1;
+        Radio radio2 = new Radio(12,11,1,1);
+        radio2.setRadioStation(radio2.getMaxRadioStation() + 1);
+        radio2.nextRadioStation(radio2.getRadioStation());
+        actual = radio2.getRadioStation();
+        expected = 12;
         assertEquals(expected, actual);
     }
 
     @Test
     public void shoudSwitchToPreviousRadioStation() {
-        Radio radio = new Radio(15); //set max radio station
         /*
          check next at max radio station
          */
-        radio.setRadioStation(radio.getMaxRadioStation());
-        int expected = radio.getRadioStation() - 1;
-        radio.previousRadioStation(radio.getRadioStation());
-        int actual = radio.getRadioStation();
+        Radio radioMax = new Radio(13,13,1,1);
+        int expected = radioMax.getRadioStation() - 1;
+        radioMax.previousRadioStation(radioMax.getRadioStation());
+        int actual = radioMax.getRadioStation();
         assertEquals(expected, actual);
 
       /*
          check next in the middle radio station
          */
-        radio.setRadioStation(3);
-        radio.previousRadioStation(radio.getRadioStation());
-        actual = radio.getRadioStation();
+        Radio radioMiddle = new Radio(3,14,1,1);
+        radioMiddle.previousRadioStation(radioMiddle.getRadioStation());
+        actual = radioMiddle.getRadioStation();
         expected = 2;
         assertEquals(expected, actual);
 
         /*
          check next at min radio station
          */
-        radio.setRadioStation(0);
-        radio.previousRadioStation(radio.getRadioStation());
-        actual = radio.getRadioStation();
-        expected = radio.getMaxRadioStation();
+        Radio radioMin = new Radio(0,11,1,1);
+        radioMin.previousRadioStation(radioMin.getRadioStation());
+        actual = radioMin.getRadioStation();
+        expected = radioMin.getMaxRadioStation();
         assertEquals(expected, actual);
 
         /*
          check next under min radio station
-         Работает не корректно из-за возврата 0 в сетерах
          */
-        radio.setRadioStation(-2);
-        radio.nextRadioStation(radio.getRadioStation());
-        actual = radio.getRadioStation();
-        expected = radio.getMaxRadioStation();
+        Radio radio2 = new Radio(-2,11,1,1);
+        expected = radio2.getRadioStation();
+        radio2.nextRadioStation(radio2.getRadioStation());
+        actual = radio2.getRadioStation();
         assertEquals(expected, actual);
 
         /*
          check next over max radio station
-         Работает не корректно из-за возврата 0 в сетерах
 
          */
-        radio.setRadioStation(radio.getMaxRadioStation() + 1);
-        radio.nextRadioStation(radio.getRadioStation());
-        actual = radio.getRadioStation();
-        expected = radio.getMaxRadioStation();
+        Radio radio3 = new Radio(15,9,1,1);
+        radio3.nextRadioStation(radio3.getRadioStation());
+        actual = radio3.getRadioStation();
+        expected = 15;
         assertEquals(expected, actual);
     }
 
@@ -126,63 +122,67 @@ class RadioTest {
 
         /*
         Set radio station over max
-        Работает не корректно из-за возврата 0 в сетерах
          */
-        radio.setRadioStation(radio.getMaxRadioStation());
-        expexted = 0;
+        radio.setRadioStation(radio.getMaxRadioStation()+1);
         actual = radio.getRadioStation();
         assertEquals(expexted,actual);
 
            /*
         Set radio station under min
-        Работает не корректно из-за возврата 0 в сетерах
          */
         radio.setRadioStation(-1);
-        expexted = 0;
         actual = radio.getRadioStation();
         assertEquals(expexted,actual);
     }
 
     @Test
     public void shoudAddVolume() {
-        Radio radio = new Radio();
         /*
         check volume at max
          */
-        radio.setVolume(radio.getMaxVolume());
-        int expected = radio.getMaxVolume();
-        radio.addSomeNoize(radio.getVolume());
-        int actual = radio.getVolume();
+        Radio radiomax = new Radio(50,50);
+        int expected = radiomax.getMaxVolume();
+        radiomax.addSomeNoize(radiomax.getVolume());
+        int actual = radiomax.getVolume();
         assertEquals(expected, actual);
 
           /*
         check volume in the middle
          */
-        radio.setVolume(50);
+        Radio radioMiddle = new Radio(50,200);
         expected = 51;
-        radio.addSomeNoize(radio.getVolume());
-        actual = radio.getVolume();
+        radioMiddle.addSomeNoize(radioMiddle.getVolume());
+        actual = radioMiddle.getVolume();
         assertEquals(expected, actual);
 
            /*
         check volume under min
 
          */
-        radio.setVolume(-1);
-        expected = 1;
-        radio.addSomeNoize(radio.getVolume());
-        actual = radio.getVolume();
+        Radio radio2 = new Radio(-1,100);
+        expected = 0;
+        radio2.addSomeNoize(radio2.getVolume());
+        actual = radio2.getVolume();
         assertEquals(expected, actual);
 
          /*
         check volume at min
 
          */
-        radio.setVolume(0);
+        Radio radioMin = new Radio(0,150);
         expected = 1;
-        radio.addSomeNoize(radio.getVolume());
-        actual = radio.getVolume();
+        radioMin.addSomeNoize(radioMin.getVolume());
+        actual = radioMin.getVolume();
         assertEquals(expected, actual);
+
+        /*
+        check volume over max
+         */
+        Radio radio3 = new Radio(150,100);
+        expected = 150;
+        radio3.addSomeNoize(radio3.getVolume());
+        actual = radio3.getVolume();
+        assertEquals(expected,actual);
     }
 
    @Test
@@ -211,7 +211,7 @@ class RadioTest {
 
          */
        radio.setVolume(-1);
-       expected = 0;
+       expected = 48;
        radio.removeSomeNoize(radio.getVolume());
        actual = radio.getVolume();
        assertEquals(expected, actual);
@@ -231,7 +231,7 @@ class RadioTest {
 
          */
        radio.setVolume(radio.getMaxVolume() + 1);
-       expected = 0;
+       expected = 98;
        radio.removeSomeNoize(radio.getVolume());
        actual = radio.getVolume();
        assertEquals(expected, actual);
