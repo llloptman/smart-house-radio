@@ -1,15 +1,14 @@
 package ru.netology;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
 
     @Test
-    public void shoudSwitchToNextRadioStation() {
+    public void shouldSwitchToNextRadioStation() {
         //Radio radio = new Radio(7); //set max radio station
         /*
          check next at max radio station
@@ -60,7 +59,7 @@ class RadioTest {
     }
 
     @Test
-    public void shoudSwitchToPreviousRadioStation() {
+    public void shouldSwitchToPreviousRadioStation() {
         /*
          check next at max radio station
          */
@@ -117,40 +116,40 @@ class RadioTest {
          */
 
         radio.setRadioStation(5);
-        int expexted = 5;
+        int expected = 5;
         int actual = radio.getRadioStation();
-        assertEquals(expexted,actual);
+        assertEquals(expected,actual);
 
         /*
         Set radio station over max
          */
         radio.setRadioStation(radio.getMaxRadioStation()+1);
         actual = radio.getRadioStation();
-        assertEquals(expexted,actual);
+        assertEquals(expected,actual);
 
            /*
         Set radio station under min
          */
         radio.setRadioStation(-1);
         actual = radio.getRadioStation();
-        assertEquals(expexted,actual);
+        assertEquals(expected,actual);
     }
 
     @Test
-    public void shoudAddVolume() {
+    public void shouldAddVolume() {
         /*
         check volume at max
          */
-        Radio radiomax = new Radio(50,50);
-        int expected = radiomax.getMaxVolume();
-        radiomax.addSomeNoize(radiomax.getVolume());
-        int actual = radiomax.getVolume();
+        Radio radioMax = new Radio(10,10,50,50);
+        int expected = radioMax.getMaxVolume();
+        radioMax.addSomeNoize(radioMax.getVolume());
+        int actual = radioMax.getVolume();
         assertEquals(expected, actual);
 
           /*
         check volume in the middle
          */
-        Radio radioMiddle = new Radio(50,200);
+        Radio radioMiddle = new Radio(10,10,50,200);
         expected = 51;
         radioMiddle.addSomeNoize(radioMiddle.getVolume());
         actual = radioMiddle.getVolume();
@@ -160,7 +159,7 @@ class RadioTest {
         check volume under min
 
          */
-        Radio radio2 = new Radio(-1,100);
+        Radio radio2 = new Radio(10,10,-1,100);
         expected = 0;
         radio2.addSomeNoize(radio2.getVolume());
         actual = radio2.getVolume();
@@ -170,7 +169,7 @@ class RadioTest {
         check volume at min
 
          */
-        Radio radioMin = new Radio(0,150);
+        Radio radioMin = new Radio(10,10,0,150);
         expected = 1;
         radioMin.addSomeNoize(radioMin.getVolume());
         actual = radioMin.getVolume();
@@ -179,7 +178,7 @@ class RadioTest {
         /*
         check volume over max
          */
-        Radio radio3 = new Radio(150,100);
+        Radio radio3 = new Radio(10,10,150,100);
         expected = 150;
         radio3.addSomeNoize(radio3.getVolume());
         actual = radio3.getVolume();
@@ -187,7 +186,7 @@ class RadioTest {
     }
 
    @Test
-    public void shoudRemoveVolume() {
+    public void shouldRemoveVolume() {
        Radio radio = new Radio();
         /*
         check volume at min
