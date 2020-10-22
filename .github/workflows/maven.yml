@@ -7,7 +7,7 @@ on:
   push:
     branches: [ master ]
 
-  [ pull_request ]
+  pull_request: [master, lombok, flexible]
 
 jobs:
   build:
